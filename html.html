@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      body div {
+        display: flex;
+        padding: 0 50px;
+      }
+      p {
+        font-size: 20px;
+        text-indent: 20px;
+      }
+      span, quote {
+        color: firebrick;
+      }
+      h1 {
+        font-size: 40px;
+        text-indent: 20px;
+      }
+      h3 {
+        font-size: 30px;
+        text-indent: 20px;
+      }
+   </style>
+</head>
+<body>
+  <div>
+    <h1>Работа с SVG спрайтами</h1>
+  </div>
+  <div>
+    <h3>Создание спрайта</h3>
+  </div>
+  <div>
+    <p>Для создания SVG спрайтов нужно просто объеденить разные SVG изображения в один тег <quote><</quote><span>svg</span><quote>></quote> и расставить <span>id</span> в тегах <quote><</quote><span>symbol</span><quote>></quote>. Также в спрайтах перестают работать внутренние теги <quote><</quote><span>defs</span><quote>></quote>, поэтому при создании спрайтов лучше убрать теги <quote><</quote><span>defs</span><quote>></quote> и убрать все ссылки, типа <span>fill: url(#example)</span>.</p>
+  </div>
+  <div>
+    <p>Также для создания спрайтов можно использовать автоматизированные системы, например <a href="https://svgsprit.es/">svgsprit.es</a>.</p>
+  </div>
+
+  <div>
+    <h3>Вызов определенного SVG из спрайта</h3>
+  </div>
+  <div>
+    <p>Для вызова из спрайта определленной svg картинки, нужно в теге <quote><</quote><span>use</span><quote>></quote> после ссылки на файл спрайта указать id нужного svg изображения. Пример: <span>xlink:href="exampleName.svg#example-id"</span>.</p>
+  </div>
+
+  <div>
+    <h3>Управление свойствами svg с помощью css</h3>
+  </div>
+  <div>
+    <p>Для указания своего свойства из CSS можно использовать переменные var. В svg нужно указать использовать переменные, например: <span>fill="var(--example-color)"</span> и изменять уже переменную в css. Таким способом невозможно задать градиент, но его можно задать непосредственно внутри тега <quote><</quote><span>svg</span><quote>></quote> также, как и в <quote><</quote><span>defs</span><quote>></quote>.
+      <br>Пример:
+      <br>
+      <br><quote><</quote><span>linearGradient id="Gradient01"</span><quote>></quote>
+      <br>&nbsp;&nbsp;&nbsp;<quote><</quote><span>stop offset="20%" stop-color="#39F" /</span><quote>></quote>
+      <br>&nbsp;&nbsp;&nbsp;<quote><</quote><span>stop offset="90%" stop-color="#F3F" /</span><quote>></quote>
+      <br><quote><</quote><span>/linearGradient</span><quote>></quote>
+    </p> 
+  </div>
+</body>
+</html>
