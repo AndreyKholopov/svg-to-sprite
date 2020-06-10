@@ -34,30 +34,42 @@
     <h3>Создание спрайта</h3>
   </div>
   <div>
-    <p>Для создания SVG спрайтов нужно просто объеденить разные SVG изображения в один тег <quote><</quote><span>svg</span><quote>></quote> и расставить <span>id</span> в тегах <quote><</quote><span>symbol</span><quote>></quote>. Также в спрайтах перестают работать внутренние теги <quote><</quote><span>defs</span><quote>></quote>, поэтому при создании спрайтов лучше убрать теги <quote><</quote><span>defs</span><quote>></quote> и убрать все ссылки, типа <span>fill: url(#example)</span>.</p>
+    <p>Символьный svg-спрайт, представляет собой один корневой элемент <quote><</quote><span>svg</span><quote>></quote>, внутри которого создаются области <quote><</quote><span>symbol</span><quote>></quote>, внутри которых содержится код svg-иконки.Для создания SVG спрайтов нужно просто объеденить разные SVG изображения в один тег <quote><</quote><span>svg</span><quote>></quote> и расставить <span>id</span> в тегах <quote><</quote><span>symbol</span><quote>></quote>. Также в спрайтах перестают работать внутренние теги <quote><</quote><span>defs</span><quote>></quote>, поэтому при создании спрайтов лучше убрать теги <quote><</quote><span>defs</span><quote>></quote> и убрать все ссылки, типа <span>fill: url(#example)</span>.</p>
   </div>
   <div>
-    <p>Также для создания спрайтов можно использовать автоматизированные системы, например <a href="https://svgsprit.es/">svgsprit.es</a>.</p>
+    <p>Для создания спрайтов можно использовать автоматизированные системы, например <a href="https://svgsprit.es/">svgsprit.es</a>.</p>
   </div>
 
   <div>
     <h3>Вызов определенного SVG из спрайта</h3>
   </div>
   <div>
-    <p>Для вызова из спрайта определленной svg картинки, нужно в теге <quote><</quote><span>use</span><quote>></quote> после ссылки на файл спрайта указать id нужного svg изображения. Пример: <span>xlink:href="exampleName.svg#example-id"</span>.</p>
+    <p>Вызов из спрайта определленной svg картинки можно осуществить в теге <quote><</quote><span>use</span><quote>></quote> после ссылки на файл спрайта указать id нужного svg изображения. Пример: <span>xlink:href="exampleName.svg#example-id"</span>.</p>
   </div>
 
   <div>
-    <h3>Управление свойствами svg с помощью css</h3>
+    <h3>Управление свойствами SVG с помощью currentColor</h3>
   </div>
   <div>
-    <p>Для указания своего свойства из CSS можно использовать переменные var. В svg нужно указать использовать переменные, например: <span>fill="var(--example-color)"</span> и изменять уже переменную в css. Таким способом невозможно задать градиент, но его можно задать непосредственно внутри тега <quote><</quote><span>svg</span><quote>></quote> также, как и в <quote><</quote><span>defs</span><quote>></quote>.
+    <p>Если в редактировании SVG нужно изменять только 2 цвета, то можно обойтись использованием <span>currentColor</span>. Для этого нужно удалить атрибуты <span>fill</span> для задания основного цвета и добавить атрибут <span>fill</span>, со значением  <span>currentColor</span> для задания дополнительного цвета. После этого, в CSS указать два значения: <span>fill</span> для цвета основной иконки и <span>color</span> для цвета ее второй части. Данный способ поддерживается <a href="https://caniuse.com/#search=currentColor">всеми современными браузерами</a>.</p> 
+  </div>
+
+  <div>
+    <h3>Управление свойствами SVG с помощью CSS-переменных</h3>
+  </div>
+  <div>
+    <p>Для указания своего свойства из CSS можно использовать переменные var. В svg нужно использовать переменные, например: <span>fill="var(--example-color)"</span> и изменять уже переменную в css. Данный способ не будет работать в некоторых версиях IE, Opera Mini и Android Browser, так как в них отсутствует поддержка <a href="https://caniuse.com/#search=variables">CSS-переменных</a>.</p> 
+  </div>
+  <div>
+    <p>Таким способом невозможно задать градиент, но его можно задать непосредственно внутри тега <quote><</quote><span>svg</span><quote>></quote>, что в файле html, также, как и в <quote><</quote><span>defs</span><quote>></quote>.
       <br>Пример:
       <br>
-      <br><quote><</quote><span>linearGradient id="Gradient01"</span><quote>></quote>
-      <br>&nbsp;&nbsp;&nbsp;<quote><</quote><span>stop offset="20%" stop-color="#39F" /</span><quote>></quote>
-      <br>&nbsp;&nbsp;&nbsp;<quote><</quote><span>stop offset="90%" stop-color="#F3F" /</span><quote>></quote>
-      <br><quote><</quote><span>/linearGradient</span><quote>></quote>
+      <br><quote><</quote><span>svg</span><quote>></quote>
+      <br>&nbsp;&nbsp;&nbsp;<quote><</quote><span>linearGradient id="Gradient01"</span><quote>></quote>
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<quote><</quote><span>stop offset="20%" stop-color="#39F" /</span><quote>></quote>
+      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<quote><</quote><span>stop offset="90%" stop-color="#F3F" /</span><quote>></quote>
+      <br>&nbsp;&nbsp;&nbsp;<quote><</quote><span>/linearGradient</span><quote>></quote>
+      <br>&nbsp;&nbsp;&nbsp;<quote><</quote><span>use ...</span><quote>></quote>
     </p> 
   </div>
 </body>
